@@ -14,6 +14,12 @@ export default defineNuxtConfig({
     'floating-vue/nuxt',
     '@pinia/nuxt',
   ],
+  nitro: {
+    baseURL: process.env.BASE_URL || '/',
+    prerender: {
+      crawlLinks: false,
+    },
+  },
   ssr: false,
   unocss: {
     attributify: true,
