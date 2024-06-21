@@ -1,8 +1,8 @@
-import type { GrammarInfo } from "tm-grammars";
-import type { Raw } from "vue";
+import type { GrammarInfo } from "tm-grammars"
 
 type OptionalGrammarInfoFields = 'sha' | 'displayName' | 'lastUpdate' | 'byteSize' | 'source'
-export type Grammar = Raw<Omit<GrammarInfo, OptionalGrammarInfoFields> & Partial<Pick<GrammarInfo, OptionalGrammarInfoFields>> & {
-  code: Ref<string | null>
-  load: () => Promise<string>,
-}>
+export type Grammar = Omit<GrammarInfo, OptionalGrammarInfoFields> & Partial<Pick<GrammarInfo, OptionalGrammarInfoFields>> & {
+  code: string | null
+  load: () => Promise<string> 
+  isBuiltin: boolean
+}

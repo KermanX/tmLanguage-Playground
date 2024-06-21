@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "nuxt-monaco-editor",
     'floating-vue/nuxt',
+    '@pinia/nuxt',
   ],
   ssr: false,
   unocss: {

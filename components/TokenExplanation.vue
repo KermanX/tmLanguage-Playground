@@ -16,7 +16,7 @@ const scopes = computed(() => {
 
 <template>
   <div font-mono p-2 min-w-100 w-fit>
-    <div flex items-end>
+    <div flex items-end gap-4 mb-2>
       <div text-left text-2xl> {{ displayedContent }}</div>
       <div text-right flex-grow> {{ displayedContent.length }} char{{ displayedContent.length>1 ? 's' : '' }}</div>
     </div>

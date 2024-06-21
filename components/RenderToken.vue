@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tooltip } from 'floating-vue'
+import { Tooltip, hideAllPoppers } from 'floating-vue'
 import type { ThemedToken } from 'shiki';
 
 defineProps<{
@@ -7,10 +7,17 @@ defineProps<{
 }>()
 
 const tooltipVisible = ref(false)
+function updateShown(s: boolean) {
+  tooltipVisible.value = s
+  if (s)
+    hideAllPoppers()
+}
 </script>
 
 <template>
-  <Tooltip class="inline" placement="bottom" :delay="{show:0, hide:100}" @update:shown="s => tooltipVisible = s">
+  <Tooltip
+class="inline" placement="bottom" :delay="{ show: 0, hide: 100 }" :triggers="['click', 'hover', 'focus']"
+    :popper-triggers="['hover']" @update:shown="updateShown">
     <template #default>
       <span :style="{ color: token.color }" :class="tooltipVisible ? 'outline' : ''" v-text="token.content" />
     </template>
