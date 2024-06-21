@@ -34,6 +34,14 @@ const vInputFocus = {
     el.setSelectionRange(0, el.value.length)
   }
 }
+
+const el = useCurrentElement()
+watchEffect(() => {
+  (el.value as HTMLElement | null)?.querySelector(`[data-grammar-name=${JSON.stringify(grammarsStore.active.name)}]`)?.scrollIntoView({
+    block: 'nearest',
+    inline: 'nearest',
+  })
+})
 </script>
 
 <template>
@@ -46,7 +54,7 @@ const vInputFocus = {
     </div>
     <div border="~ base rounded" max-h-60vh h-fit flex flex-col overflow-y-auto>
       <div
-v-for="project in grammarsStore.projects" :key="project.name" border="b base" px3 py1 text-left flex items-center gap-2 class="group" relative hover="bg-gray/20"
+v-for="project in grammarsStore.projects" :key="project.name" :data-grammar-name="project.name" border="b base" px3 py1 text-left flex items-center gap-2 class="group" relative hover="bg-gray/20"
         :class="grammarsStore.active === project ? 'bg-active text-primary' : 'text-faded'" @click="grammarsStore.active = project">
         <template v-if="renaming !== project">
           <span flex-grow>
@@ -74,7 +82,7 @@ v-for="project in grammarsStore.projects" :key="project.name" border="b base" px
     </div>
     <div border="~ base rounded" h-0 flex-grow flex flex-col overflow-y-scroll>
       <div
-v-for="builtin in filteredBuiltins" :key="builtin.name" border="b base" px3 py1 text-left hover="bg-gray/20"
+v-for="builtin in filteredBuiltins" :key="builtin.name" :data-grammar-name="builtin.name" border="b base" px3 py1 text-left hover="bg-gray/20"
         :class="grammarsStore.active === builtin ? 'bg-active text-primary' : 'text-faded'" @click="grammarsStore.active = builtin">
         <span>
           {{ builtin.name }}
