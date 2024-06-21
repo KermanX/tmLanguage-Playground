@@ -23,4 +23,4 @@ jobs:
 
       - run: pnpm lint:fix
 
-      - uses: autofix-ci/action
+      - uses: autofix-ci/action@b08933b99d66b7cd7af33ec3088b7ca70f776a7d
