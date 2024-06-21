@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     baseURL: process.env.BASE_URL || '/',
     prerender: {
       crawlLinks: false,
+      failOnError: false,
     },
   },
   ssr: false,
