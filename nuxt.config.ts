@@ -1,8 +1,13 @@
 import TransformerDirectives from '@unocss/transformer-directives'
 
+const baseURL = process.env.BASE_URL || '/'
+
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.BASE_URL || '/',
+    baseURL,
+    head: {
+      link: [{ rel: 'icon', type: 'image/png', href: `${baseURL}favicon.ico` }]
+    },
   },
   modules: [
     "nuxt-shiki",
@@ -15,7 +20,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   nitro: {
-    baseURL: process.env.BASE_URL || '/',
+    baseURL,
     prerender: {
       crawlLinks: false,
       failOnError: false,
