@@ -29,6 +29,12 @@ const { isOverDropZone } = useDropZone(pageEl, {
     })
   },
 })
+
+const { width: windowWidth } = useWindowSize()
+const editorRatio = ref(0.5)
+const spacingWidth = 54
+const selectorWidth = 180
+const editorWidth = computed(() => (windowWidth.value - selectorWidth - spacingWidth) * editorRatio.value)
 </script>
 
 <template>
@@ -41,10 +47,10 @@ const { isOverDropZone } = useDropZone(pageEl, {
 i-carbon-logo-github text-2xl op80 hover:op90 mr-1 href="https://github.com/KermanX/tmLanguage-Playground"
         target="_blank" />
     </div>
-    <div px-4 pb-4 h-0 flex-grow grid="~ cols-[180px_2fr_2fr] gap-4">
-      <GrammarSelector />
-      <GrammarEditor />
-      <ExamplePreview />
+    <div px-4 pb-4 h-0 flex-grow flex gap-4>
+      <GrammarSelector :style="{width: selectorWidth + 'px'}" />
+      <GrammarEditor :style="{width: editorWidth + 'px'}"/>
+      <ExamplePreview flex-grow />
     </div>
     <div v-if="isOverDropZone" fixed inset-0 class="bg-green/40" flex items-center justify-center>
       <div flex flex-col items-center class="bg-green/80" p-6 rounded-2xl>
