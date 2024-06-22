@@ -55,7 +55,8 @@ watch(editing, () => {
       </component>
       <textarea
 v-if="editing" v-model="exampleCode" v-focus
-        class="p-4 font-mono absolute inset-0 text-transparent bg-transparent caret-white !outline-none b-2 b-gray rounded" 
+        class="p-4 font-mono absolute inset-0 text-transparent bg-transparent caret-white !outline-2 outline-offset--2 !outline-gray rounded" 
+        style="box-shadow: inset 0 0 1em #FFFFFFBB"
         @blur="editing = false"
         />
     </template>
